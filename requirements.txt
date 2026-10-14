@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+twilio
+openai
+pinecone-client
+python-dotenv
+requests
+beautifulsoup4
