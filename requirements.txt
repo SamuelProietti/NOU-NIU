@@ -2,7 +2,7 @@ fastapi
 uvicorn
 twilio
 openai
-pinecone-client
+pinecone
 python-dotenv
 requests
 beautifulsoup4
