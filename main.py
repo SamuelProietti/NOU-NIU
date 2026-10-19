@@ -16,23 +16,20 @@ app = FastAPI()
 
 @app.get("/")
 def health_check():
-    return {"status": "Nouniu está despierto y funcionando"}
+    return {"status": "Nouniu is awake and running"}
 
 # 2. Secret route for cron-job.org to trigger the Pinecone update
 @app.get("/trigger-sync")
 def trigger_pinecone_sync(token: str = Query(None)):
-    # Simple password protection
     if token != "samuel2026": 
         raise HTTPException(status_code=401, detail="Unauthorized")
-    
     try:
         sync_to_pinecone()
         return {"status": "success", "message": "Pinecone updated successfully!"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# ... The rest of your code (Twilio, OpenAI, Pinecone initialization) stays exactly the same down here ...
-# 2. Initialize APIs
+# 3. Initialize APIs
 client_openai = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 index = pc.Index("nouniu-db")
@@ -42,103 +39,114 @@ TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 TWILIO_NUMBER = os.getenv("TWILIO_NUMBER")
 twilio_client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
-# 3. Persistent Memory (SQLite)
+# 4. Persistent Memory (SQLite - Now in English)
 conn = sqlite3.connect('nouniu_memoria.db', check_same_thread=False)
 cursor = conn.cursor()
 cursor.execute('''
-    CREATE TABLE IF NOT EXISTS usuarios (
-        telefono TEXT PRIMARY KEY,
-        fecha_inicio TEXT,
-        interacciones INTEGER,
-        historial TEXT,
-        perfil TEXT,
-        ultimo_mensaje TEXT 
+    CREATE TABLE IF NOT EXISTS users (
+        phone TEXT PRIMARY KEY,
+        start_date TEXT,
+        interactions INTEGER,
+        history TEXT,
+        profile TEXT,
+        last_message TEXT 
     )
 ''')
 conn.commit()
 
 @app.post("/whatsapp")
 async def whatsapp_webhook(Body: str = Form(""), From: str = Form("")):
-    mensaje_usuario = Body.strip()
-    ahora = datetime.now().isoformat()
+    user_message = Body.strip()
+    current_time = datetime.now().isoformat()
     
-    # 4. State Management
-    cursor.execute("SELECT * FROM usuarios WHERE telefono = ?", (From,))
-    usuario = cursor.fetchone()
+    # 5. State Management
+    cursor.execute("SELECT * FROM users WHERE phone = ?", (From,))
+    user_data = cursor.fetchone()
     
-    if not usuario:
-        fecha_hoy = datetime.now().strftime("%Y-%m-%d")
+    if not user_data:
+        # First time user
+        today_date = datetime.now().strftime("%Y-%m-%d")
         cursor.execute('''
-            INSERT INTO usuarios (telefono, fecha_inicio, interacciones, historial, perfil, ultimo_mensaje)
+            INSERT INTO users (phone, start_date, interactions, history, profile, last_message)
             VALUES (?, ?, ?, ?, ?, ?)
-        ''', (From, fecha_hoy, 1, json.dumps([]), json.dumps({}), ahora))
+        ''', (From, today_date, 1, json.dumps([]), json.dumps({}), current_time))
         conn.commit()
         
-        mensaje_salida = (
+        output_message = (
             "🪹 *Hi! I'm Nouniu, your new nest in Barcelona.*\n"
             "_(Feel free to reply in English, Español, Français, Italiano, or any language!)_\n\n"
             "How can I help you settle in today?\n\n"
-            "🤝 *1. Meet the Community* (Local groups, making friends)\n"
-            "🗣️ *2. Language & Culture* (Free courses, local customs)\n"
+            "🤝 *1. Meet the Community* (Local events, underground parties, plans)\n"
+            "🗣️ *2. Language & Culture* (Practice Spanish/Catalan with me)\n"
             "🫂 *3. I need a break* (Feeling overwhelmed? Let's take a breath)"
         )
     
     else:
-        interacciones = usuario[2] + 1
-        historial_reciente = json.loads(usuario[3])
-        historial_reciente.append({"role": "user", "content": mensaje_usuario})
-        historial_reciente = historial_reciente[-4:]
+        # Returning user
+        interactions = user_data[2] + 1
+        recent_history = json.loads(user_data[3])
+        recent_history.append({"role": "user", "content": user_message})
+        recent_history = recent_history[-6:] # Keep last 6 messages for better context during roleplay
         
-        # A. RAG: Proactive Background Search
+        # A. RAG: Proactive Background Search for Events
         try:
-            busqueda_hibrida = f"{mensaje_usuario} upcoming local events cultural activities Barcelona"
-            respuesta_embed = await client_openai.embeddings.create(
-                input=busqueda_hibrida,
+            hybrid_search = f"{user_message} upcoming local events cultural activities clubbing Barcelona"
+            embed_response = await client_openai.embeddings.create(
+                input=hybrid_search,
                 model="text-embedding-3-small"
             )
-            resultados = index.query(vector=respuesta_embed.data[0].embedding, top_k=1, include_metadata=True)
-            info_recuperada = resultados['matches'][0]['metadata']['texto'] if resultados['matches'] else "No specific local data found."
+            results = index.query(vector=embed_response.data[0].embedding, top_k=1, include_metadata=True)
+            retrieved_info = results['matches'][0]['metadata']['texto'] if results['matches'] else "No specific local data found."
         except Exception as e:
             print(f"⚠️ Pinecone error: {e}")
-            info_recuperada = "Database offline."
+            retrieved_info = "Database offline."
 
-        # B. THE MASTER PROMPT
-        prompt_sistema = f"""
-        You are Nouniu, an empathetic local companion for expats in Barcelona. Your goal is to help them integrate, discover the culture, and support their emotional wellbeing.
-        
-        CRITICAL RULES:
-        1. STRICT LANGUAGE MATCHING: You MUST detect the language of the user's very last message and reply EXCLUSIVELY in that exact same language. If they wrote in English, reply in English. If Spanish, reply in Spanish. NEVER mix languages.
-        2. LOCAL CONTEXT: Use this provided local database context: {info_recuperada}
-        3. WHATSAPP FORMATTING: People read on small screens. Keep paragraphs extremely short (1-2 sentences max). Use *bold text* for key places or concepts. NEVER output large blocks of text.
-        4. CURATION OVER VOLUME: You are a local curator, not Google. NEVER give long lists of 5-10 places. Always suggest a maximum of 1 or 2 highly tailored, specific options.
-        5. BOUNDARIES: You are a supportive companion, not a lawyer or a medical doctor. If asked about complex legal processes, advise them to consult official services.
-        6. EMPATHY FIRST: If the user expresses sadness, loneliness, or frustration, first validate their feelings naturally before offering solutions.
-        7. PROACTIVE PUSH: NEVER end with a closed statement. ALWAYS offer 2 distinct options at the end: one real-world event using [LOCAL CONTEXT], and one low-effort wellness/conversational choice. Ensure your final sentence is complete.
+        # B. THE MASTER PROMPT (Dual-Brain)
+        system_prompt = f"""
+        You are Nouniu, an empathetic local companion and language tutor for expats in Barcelona.
+
+        CURRENT LOCAL DATA (Events/Activities): {retrieved_info}
+
+        YOUR TWO MODES:
+
+        1. LOCAL COMPANION MODE (Default)
+        - If the user wants to socialize, mentions "1", or asks for plans, use the CURRENT LOCAL DATA. Suggest 1 or 2 specific events (e.g., an underground techno party or Time Out activity). Speak like an insider friend ("I heard there's a cool party...").
+        - Empathy First: Validate feelings of loneliness or frustration warmly before suggesting plans.
+        - Match their language exactly (e.g., if they speak Italian, reply in Italian).
+
+        2. LANGUAGE TUTOR MODE (If user selects "2", "Language", or asks to practice)
+        - Step 1: If not specified, ask which language they want to practice (Spanish or Catalan) AND their level (Beginner, Intermediate, Advanced).
+        - Step 2: Once level is known, immediately start a practical daily-life role-play (e.g., ordering coffee at a 'forn de pa', buying a metro ticket, or talking to a bartender). 
+        - Step 3: During the role-play, gently correct their grammar in brackets [Correction: ...] and then reply IN CHARACTER to continue the scene. Do not break character to give long grammar lectures.
+
+        CRITICAL RULES FOR ALL MODES:
+        - WHATSAPP FORMATTING: Keep paragraphs extremely short (1-2 sentences). Use *bold* for emphasis. Use natural emojis.
+        - PROACTIVE PUSH: Never end with a closed statement. Always end by asking a question, offering a choice, or passing the turn in the role-play to keep the conversation flowing.
         """
         
         # C. Generate AI Response with FAILSAFE
-        mensajes_para_ia = [{"role": "system", "content": prompt_sistema}] + historial_reciente
+        ai_messages = [{"role": "system", "content": system_prompt}] + recent_history
         
         try:
-            # Added max_tokens to ensure the model doesn't get cut off mid-sentence
-            respuesta_ia = await client_openai.chat.completions.create(
+            ai_response = await client_openai.chat.completions.create(
                 model="gpt-4o-mini",
-                messages=mensajes_para_ia,
+                messages=ai_messages,
                 max_tokens=300
             )
-            mensaje_salida = respuesta_ia.choices[0].message.content
-            historial_reciente.append({"role": "assistant", "content": mensaje_salida})
+            output_message = ai_response.choices[0].message.content
+            recent_history.append({"role": "assistant", "content": output_message})
             
+            # Save updated state to English database
             cursor.execute('''
-                UPDATE usuarios
-                SET interacciones = ?, historial = ?, ultimo_mensaje = ?
-                WHERE telefono = ?
-            ''', (interacciones, json.dumps(historial_reciente), ahora, From))
+                UPDATE users
+                SET interactions = ?, history = ?, last_message = ?
+                WHERE phone = ?
+            ''', (interactions, json.dumps(recent_history), current_time, From))
             conn.commit()
             
         except Exception as e:
             print(f"⚠️ OpenAI error: {e}")
-            mensaje_salida = (
+            output_message = (
                 "⚠️ *Technical Break*\n"
                 "I am having a brief moment finding my words, but I am still here for you!\n\n"
                 "While I reconnect, here are some reliable offline resources:\n"
@@ -148,9 +156,9 @@ async def whatsapp_webhook(Body: str = Form(""), From: str = Form("")):
                 "I will be fully back online shortly. 💙"
             )
 
-    # 5. Send via Twilio
+    # 6. Send via Twilio
     try:
-        twilio_client.messages.create(from_=TWILIO_NUMBER, to=From, body=mensaje_salida)
+        twilio_client.messages.create(from_=TWILIO_NUMBER, to=From, body=output_message)
     except Exception as e:
         print(f"❌ Twilio error: {e}")
 
