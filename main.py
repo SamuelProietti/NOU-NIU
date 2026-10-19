@@ -3,19 +3,35 @@ import sqlite3
 import json
 from datetime import datetime
 from dotenv import load_dotenv
-from fastapi import FastAPI, Form, Response
+from fastapi import FastAPI, Form, Response, HTTPException, Query
 from twilio.rest import Client
 from openai import AsyncOpenAI
 from pinecone import Pinecone
+from sync_events import sync_to_pinecone 
 
 # 1. Load environment variables
 load_dotenv()
 
 app = FastAPI()
+
 @app.get("/")
 def health_check():
     return {"status": "Nouniu está despierto y funcionando"}
 
+# 2. Secret route for cron-job.org to trigger the Pinecone update
+@app.get("/trigger-sync")
+def trigger_pinecone_sync(token: str = Query(None)):
+    # Simple password protection
+    if token != "samuel2026": 
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    
+    try:
+        sync_to_pinecone()
+        return {"status": "success", "message": "Pinecone updated successfully!"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# ... The rest of your code (Twilio, OpenAI, Pinecone initialization) stays exactly the same down here ...
 # 2. Initialize APIs
 client_openai = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
