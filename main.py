@@ -64,22 +64,28 @@ async def whatsapp_webhook(Body: str = Form(""), From: str = Form("")):
     user_data = cursor.fetchone()
     
     if not user_data:
-        # First time user
-        today_date = datetime.now().strftime("%Y-%m-%d")
-        cursor.execute('''
-            INSERT INTO users (phone, start_date, interactions, history, profile, last_message)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (From, today_date, 1, json.dumps([]), json.dumps({}), current_time))
-        conn.commit()
-        
-        output_message = (
+        # First time user - We add the new fallback instruction here!
+        welcome_text = (
             "🪹 *Hi! I'm Nouniu, your new nest in Barcelona.*\n"
             "_(Feel free to reply in English, Español, Français, Italiano, or any language!)_\n\n"
             "How can I help you settle in today?\n\n"
-            "🤝 *1. Meet the Community* (Local events, underground parties, plans)\n"
+            "🤝 *1. Meet the Community* (Local events, groups, traditions)\n"
             "🗣️ *2. Language & Culture* (Practice Spanish/Catalan with me)\n"
-            "🫂 *3. I need a break* (Feeling overwhelmed? Let's take a breath)"
+            "🫂 *3. I need a break* (Feeling overwhelmed? Let's take a breath)\n\n"
+            "💡 _Tip: You can reply with a number, or just type to me naturally in your own language!_"
         )
+        
+        today_date = datetime.now().strftime("%Y-%m-%d")
+        # CRITICAL FIX: We save the welcome menu to the history so the AI knows what you are replying to!
+        initial_history = [{"role": "assistant", "content": welcome_text}]
+        
+        cursor.execute('''
+            INSERT INTO users (phone, start_date, interactions, history, profile, last_message)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', (From, today_date, 1, json.dumps(initial_history), json.dumps({}), current_time))
+        conn.commit()
+        
+        output_message = welcome_text
     
     else:
         # Returning user
@@ -102,6 +108,7 @@ async def whatsapp_webhook(Body: str = Form(""), From: str = Form("")):
             retrieved_info = "Database offline."
 
         # B. THE MASTER PROMPT (Dual-Brain)
+        # B. THE MASTER PROMPT (Dual-Brain)
         system_prompt = f"""
         You are Nouniu, an empathetic local companion and language tutor for expats in Barcelona.
 
@@ -109,19 +116,20 @@ async def whatsapp_webhook(Body: str = Form(""), From: str = Form("")):
 
         YOUR TWO MODES:
 
-        1. LOCAL COMPANION MODE (Default)
-        - If the user wants to socialize, mentions "1", or asks for plans, use the CURRENT LOCAL DATA. Suggest 1 or 2 specific events (e.g., an underground techno party or Time Out activity). Speak like an insider friend ("I heard there's a cool party...").
-        - Empathy First: Validate feelings of loneliness or frustration warmly before suggesting plans.
-        - Match their language exactly (e.g., if they speak Italian, reply in Italian).
+        1. LOCAL COMPANION MODE (Default / If user says "1")
+        - Suggest 1 or 2 specific events based ONLY on the CURRENT LOCAL DATA. 
+        - CRITICAL: NEVER invent, hallucinate, or recommend generic clubs (like Opium) unless they are explicitly in the local data. Focus on community, culture, and specific underground events we scraped.
+        - Empathy First: Validate feelings of loneliness warmly before suggesting plans.
 
         2. LANGUAGE TUTOR MODE (If user selects "2", "Language", or asks to practice)
         - Step 1: If not specified, ask which language they want to practice (Spanish or Catalan) AND their level (Beginner, Intermediate, Advanced).
-        - Step 2: Once level is known, immediately start a practical daily-life role-play (e.g., ordering coffee at a 'forn de pa', buying a metro ticket, or talking to a bartender). 
+        - Step 2: Once level is known, immediately start a practical daily-life role-play (e.g., ordering coffee at a 'forn de pa', buying a metro ticket). 
         - Step 3: During the role-play, gently correct their grammar in brackets [Correction: ...] and then reply IN CHARACTER to continue the scene. Do not break character to give long grammar lectures.
 
         CRITICAL RULES FOR ALL MODES:
+        - LANGUAGE MATCHING: Always reply in the exact language the user wrote their last message in, unless you are actively role-playing in Tutor Mode.
         - WHATSAPP FORMATTING: Keep paragraphs extremely short (1-2 sentences). Use *bold* for emphasis. Use natural emojis.
-        - PROACTIVE PUSH: Never end with a closed statement. Always end by asking a question, offering a choice, or passing the turn in the role-play to keep the conversation flowing.
+        - PROACTIVE PUSH: Always end by asking a question, offering a choice, or passing the turn in the role-play.
         """
         
         # C. Generate AI Response with FAILSAFE
