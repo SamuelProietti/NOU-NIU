@@ -60,20 +60,52 @@ async def whatsapp_webhook(Body: str = Form(""), From: str = Form("")):
     current_time = datetime.now().isoformat()
     
     # 5. State Management
+    use_welcome_template = False # Flag to trigger the Twilio buttons
+    
     cursor.execute("SELECT * FROM users WHERE phone = ?", (From,))
     user_data = cursor.fetchone()
     
     if not user_data:
-        # First time user - We add the new fallback instruction here!
-        welcome_text = (
-            "🪹 *Hi! I'm Nouniu, your new nest in Barcelona.*\n"
-            "_(Feel free to reply in English, Español, Français, Italiano, or any language!)_\n\n"
-            "How can I help you settle in today?\n\n"
-            "🤝 *1. Meet the Community* (Local events, groups, traditions)\n"
-            "🗣️ *2. Language & Culture* (Practice Spanish/Catalan with me)\n"
-            "🫂 *3. I need a break* (Feeling overwhelmed? Let's take a breath)\n\n"
-            "💡 _Tip: You can reply with a number, or just type to me naturally in your own language!_"
-        )
+        # First time user -> Trigger the premium buttons!
+        use_welcome_template = True
+        
+        # This is what the AI remembers we sent, so it understands their replies
+        ai_memory_text = "I greeted the user and gave them 3 options: 'Meet community', 'Learn language', or 'Feeling lonely?'"
+        
+        today_date = datetime.now().strftime("%Y-%m-%d")
+        initial_history = [{"role": "assistant", "content": ai_memory_text}]
+        
+        cursor.execute('''
+            INSERT INTO users (phone, start_date, interactions, history, profile, last_message)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', (From, today_date, 1, json.dumps(initial_history), json.dumps({}), current_time))
+        conn.commit()
+        
+        output_message = "" # We leave this blank because Twilio handles the template
+    
+    # 5. State Management
+    use_welcome_template = False # Flag to trigger the Twilio buttons
+    
+    cursor.execute("SELECT * FROM users WHERE phone = ?", (From,))
+    user_data = cursor.fetchone()
+    
+    if not user_data:
+        # First time user -> Trigger the premium buttons!
+        use_welcome_template = True
+        
+        # This is what the AI remembers we sent, so it understands their replies
+        ai_memory_text = "I greeted the user and gave them 3 options: 'Meet community', 'Learn language', or 'I need to talk'."
+        
+        today_date = datetime.now().strftime("%Y-%m-%d")
+        initial_history = [{"role": "assistant", "content": ai_memory_text}]
+        
+        cursor.execute('''
+            INSERT INTO users (phone, start_date, interactions, history, profile, last_message)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', (From, today_date, 1, json.dumps(initial_history), json.dumps({}), current_time))
+        conn.commit()
+        
+        output_message = "" # We leave this blank because Twilio handles the template
         
         today_date = datetime.now().strftime("%Y-%m-%d")
         # CRITICAL FIX: We save the welcome menu to the history so the AI knows what you are replying to!
@@ -107,7 +139,6 @@ async def whatsapp_webhook(Body: str = Form(""), From: str = Form("")):
             print(f"⚠️ Pinecone error: {e}")
             retrieved_info = "Database offline."
 
-        # B. THE MASTER PROMPT (Dual-Brain)
         # B. THE MASTER PROMPT (Dual-Brain)
         system_prompt = f"""
         You are Nouniu, an empathetic local companion and language tutor for expats in Barcelona.
