@@ -12,6 +12,9 @@ from pinecone import Pinecone
 load_dotenv()
 
 app = FastAPI()
+@app.get("/")
+def health_check():
+    return {"status": "Nouniu está despierto y funcionando"}
 
 # 2. Initialize APIs
 client_openai = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
