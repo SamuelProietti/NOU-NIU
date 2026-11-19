@@ -7,7 +7,8 @@ from fastapi import FastAPI, Form, Response, HTTPException, Query
 from twilio.rest import Client
 from openai import AsyncOpenAI
 from pinecone import Pinecone
-from sync_events import sync_to_pinecone 
+from sync_events import sync_to_pinecone
+from clinical_engine import handle_incoming
 
 # 1. Load environment variables
 load_dotenv()
@@ -66,134 +67,66 @@ async def whatsapp_webhook(Body: str = Form(""), From: str = Form("")):
     user_data = cursor.fetchone()
     
     if not user_data:
-        # First time user -> Trigger the premium buttons!
-        use_welcome_template = True
-        
-        # This is what the AI remembers we sent, so it understands their replies
-        ai_memory_text = "I greeted the user and gave them 3 options: 'Meet community', 'Learn language', or 'Feeling lonely?'"
-        
         today_date = datetime.now().strftime("%Y-%m-%d")
-        initial_history = [{"role": "assistant", "content": ai_memory_text}]
-        
         cursor.execute('''
             INSERT INTO users (phone, start_date, interactions, history, profile, last_message)
             VALUES (?, ?, ?, ?, ?, ?)
-        ''', (From, today_date, 1, json.dumps(initial_history), json.dumps({}), current_time))
+        ''', (From, today_date, 0, json.dumps([]), json.dumps({}), current_time))
         conn.commit()
-        
-        output_message = "" # We leave this blank because Twilio handles the template
-    
-    # 5. State Management
-    use_welcome_template = False # Flag to trigger the Twilio buttons
-    
-    cursor.execute("SELECT * FROM users WHERE phone = ?", (From,))
-    user_data = cursor.fetchone()
-    
-    if not user_data:
-        # First time user -> Trigger the premium buttons!
-        use_welcome_template = True
-        
-        # This is what the AI remembers we sent, so it understands their replies
-        ai_memory_text = "I greeted the user and gave them 3 options: 'Meet community', 'Learn language', or 'I need to talk'."
-        
-        today_date = datetime.now().strftime("%Y-%m-%d")
-        initial_history = [{"role": "assistant", "content": ai_memory_text}]
-        
-        cursor.execute('''
-            INSERT INTO users (phone, start_date, interactions, history, profile, last_message)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (From, today_date, 1, json.dumps(initial_history), json.dumps({}), current_time))
-        conn.commit()
-        
-        output_message = "" # We leave this blank because Twilio handles the template
-        
-        today_date = datetime.now().strftime("%Y-%m-%d")
-        # CRITICAL FIX: We save the welcome menu to the history so the AI knows what you are replying to!
-        initial_history = [{"role": "assistant", "content": welcome_text}]
-        
-        cursor.execute('''
-            INSERT INTO users (phone, start_date, interactions, history, profile, last_message)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (From, today_date, 1, json.dumps(initial_history), json.dumps({}), current_time))
-        conn.commit()
-        
-        output_message = welcome_text
-    
-    else:
-        # Returning user
-        interactions = user_data[2] + 1
-        recent_history = json.loads(user_data[3])
-        recent_history.append({"role": "user", "content": user_message})
-        recent_history = recent_history[-6:] # Keep last 6 messages for better context during roleplay
-        
-        # A. RAG: Proactive Background Search for Events
-        try:
-            hybrid_search = f"{user_message} upcoming local events cultural activities clubbing Barcelona"
-            embed_response = await client_openai.embeddings.create(
-                input=hybrid_search,
-                model="text-embedding-3-small"
+        cursor.execute("SELECT * FROM users WHERE phone = ?", (From,))
+        user_data = cursor.fetchone()
+
+        # Empty first ping: keep the existing Twilio welcome template.
+        if not user_message:
+            use_welcome_template = True
+            ai_memory_text = "I greeted the user and gave them 3 options: 'Meet community', 'Learn language', or 'I need to talk'."
+            cursor.execute(
+                '''UPDATE users SET interactions = 1, history = ?, last_message = ?
+                   WHERE phone = ?''',
+                (json.dumps([{"role": "assistant", "content": ai_memory_text}]), current_time, From),
             )
-            results = index.query(vector=embed_response.data[0].embedding, top_k=1, include_metadata=True)
-            retrieved_info = results['matches'][0]['metadata']['texto'] if results['matches'] else "No specific local data found."
-        except Exception as e:
-            print(f"⚠️ Pinecone error: {e}")
-            retrieved_info = "Database offline."
-
-        # B. THE MASTER PROMPT (Dual-Brain)
-        system_prompt = f"""
-        You are Nouniu, an empathetic local companion and language tutor for expats in Barcelona.
-
-        CURRENT LOCAL DATA (Events/Activities): {retrieved_info}
-
-        YOUR TWO MODES:
-
-        1. LOCAL COMPANION MODE (Default / If user says "1")
-        - Suggest 1 or 2 specific events based ONLY on the CURRENT LOCAL DATA. 
-        - CRITICAL: NEVER invent, hallucinate, or recommend generic clubs (like Opium) unless they are explicitly in the local data. Focus on community, culture, and specific underground events we scraped.
-        - Empathy First: Validate feelings of loneliness warmly before suggesting plans.
-
-        2. LANGUAGE TUTOR MODE (If user selects "2", "Language", or asks to practice)
-        - Step 1: If not specified, ask which language they want to practice (Spanish or Catalan) AND their level (Beginner, Intermediate, Advanced).
-        - Step 2: Once level is known, immediately start a practical daily-life role-play (e.g., ordering coffee at a 'forn de pa', buying a metro ticket). 
-        - Step 3: During the role-play, gently correct their grammar in brackets [Correction: ...] and then reply IN CHARACTER to continue the scene. Do not break character to give long grammar lectures.
-
-        CRITICAL RULES FOR ALL MODES:
-        - LANGUAGE MATCHING: Always reply in the exact language the user wrote their last message in, unless you are actively role-playing in Tutor Mode.
-        - WHATSAPP FORMATTING: Keep paragraphs extremely short (1-2 sentences). Use *bold* for emphasis. Use natural emojis.
-        - PROACTIVE PUSH: Always end by asking a question, offering a choice, or passing the turn in the role-play.
-        """
-        
-        # C. Generate AI Response with FAILSAFE
-        ai_messages = [{"role": "system", "content": system_prompt}] + recent_history
-        
-        try:
-            ai_response = await client_openai.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=ai_messages,
-                max_tokens=300
-            )
-            output_message = ai_response.choices[0].message.content
-            recent_history.append({"role": "assistant", "content": output_message})
-            
-            # Save updated state to English database
-            cursor.execute('''
-                UPDATE users
-                SET interactions = ?, history = ?, last_message = ?
-                WHERE phone = ?
-            ''', (interactions, json.dumps(recent_history), current_time, From))
             conn.commit()
-            
-        except Exception as e:
-            print(f"⚠️ OpenAI error: {e}")
-            output_message = (
-                "⚠️ *Technical Break*\n"
-                "I am having a brief moment finding my words, but I am still here for you!\n\n"
-                "While I reconnect, here are some reliable offline resources:\n"
-                "📞 Emergencies: 112\n"
-                "🏥 Medical Help (CatSalut): 061\n"
-                "🌐 City Hall Info: 010\n\n"
-                "I will be fully back online shortly. 💙"
-            )
+            output_message = "" # We leave this blank because Twilio handles the template
+            print("[MODE] welcome_template")
+            print("[SAFETY CHECK] skipped=empty_first_contact")
+            print("[FICHA STEP] none")
+            print("[DB/RAG] used=False reason=welcome_template")
+            try:
+                twilio_client.messages.create(from_=TWILIO_NUMBER, to=From, body=output_message)
+            except Exception as e:
+                print(f"❌ Twilio error: {e}")
+            return Response(content="", status_code=200)
+
+    # Returning user (or first text message): safety gate + clinical / Barcelona RAG
+    interactions = user_data[2] + 1
+    recent_history = json.loads(user_data[3] or "[]")
+    recent_history.append({"role": "user", "content": user_message})
+    recent_history = recent_history[-8:]
+    raw_profile = user_data[4]
+
+    turn = await handle_incoming(
+        client_openai,
+        index,
+        user_message,
+        From,
+        recent_history,
+        raw_profile,
+    )
+    output_message = turn["output_message"]
+    recent_history.append({"role": "assistant", "content": output_message})
+
+    cursor.execute('''
+        UPDATE users
+        SET interactions = ?, history = ?, profile = ?, last_message = ?
+        WHERE phone = ?
+    ''', (
+        interactions,
+        json.dumps(recent_history),
+        json.dumps(turn["profile"], ensure_ascii=False),
+        current_time,
+        From,
+    ))
+    conn.commit()
 
     # 6. Send via Twilio
     try:

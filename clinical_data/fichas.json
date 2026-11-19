@@ -1,0 +1,348 @@
+{
+  "source": "SECCIÓN 4: EL BANCO DE RECURSOS",
+  "count": 38,
+  "fichas": [
+    {
+      "id": 1,
+      "title": "CHOQUE TÉRMICO (Técnica TIPP - Terapia Dialéctica Conductual)",
+      "objetivo_clinico": "Provocar el \"reflejo de inmersión en mamíferos\" para reducir radicalmente la taquicardia por secuestro amigdalar.",
+      "cuando_usarla": "Pánico inminente, hiperventilación, llanto incontrolable.",
+      "step_1": "Tu cuerpo acaba de entrar en estado de falsa alarma y vamos a apagar esa sirena neurológica ahora mismo. Te pido que vayas a la cocina o al baño. Toma un cubito de hielo o abre el grifo con el agua más fría que tengas. Avísame en cuanto estés ahí.",
+      "step_2": "Si tienes el hielo, apriétalo en tu mano fuerte hasta que el frío moleste de verdad. Si es agua, salpícate la cara con agua muy fría 3 o 4 veces seguidas aguantando la respiración. Hazlo y dime cómo sientes la temperatura de tu cuerpo.",
+      "step_3": "El frío intenso acaba de forzar a tu sistema nervioso parasimpático a frenar las revoluciones de tu corazón de golpe. No era solo respirar, era biología. Tómate un vaso de agua lento. Estoy aquí acompañándote, ya pasó el pico."
+    },
+    {
+      "id": 2,
+      "title": "TOMA DE TIERRA (Grounding Sensoriomotriz)",
+      "objetivo_clinico": "Reconexión sensorial plantar para anclar la conciencia ejecutiva en el presente.",
+      "cuando_usarla": "Sensación de irrealidad (desrealización), disociación leve o agitación motora.",
+      "step_1": "La angustia te está haciendo sentir flotar fuera de tu cuerpo. Vamos a usar la biología de tus sentidos físicos para aterrizar de nuevo en tu habitación. Quítate el calzado, necesito que tus pies toquen directamente el suelo. Avísame cuando lo hayas hecho.",
+      "step_2": "Levántate y camina muy lento. Presta atención extrema a la piel de las plantas de tus pies chocando con el piso. Escríbeme: ¿Cómo se siente la temperatura del suelo? ¿Es liso, rugoso, qué textura exacta tiene?",
+      "step_3": "Concéntrate en esa sensación física de soporte. La gravedad te mantiene anclado/a. Este suelo nuevo es sólido y te sostiene. Tu cuerpo ha regresado al presente, estás a salvo aquí."
+    },
+    {
+      "id": 3,
+      "title": "EMPUJE DE PARED (Resistencia Propioceptiva)",
+      "objetivo_clinico": "Liberación segura de la energía biológica de \"lucha/huida\" retenida en los músculos.",
+      "cuando_usarla": "Tensión extrema, temblores de ansiedad, rabia contenida o impotencia burocrática.",
+      "step_1": "Tu cuerpo está cargado de adrenalina por el estrés y necesita sacarla físicamente, no sirve solo hablarlo. Ponte de pie frente a una pared vacía. Apoya ambas manos planas contra ella, a la altura de tus hombros. Avísame.",
+      "step_2": "Empuja la pared con toda la fuerza de tu cuerpo, tensando brazos, piernas y abdomen como si quisieras moverla. Empuja duro durante 10 segundos aguantando la respiración y luego suelta de golpe soltando el aire. Hazlo dos veces y me cuentas qué sientes en los brazos.",
+      "step_3": "Ese cansancio y pesadez en los músculos es tu cuerpo quemando la hormona del estrés. Acabas de liberar la carga de lucha que tu cerebro había acumulado por la frustración de estos días."
+    },
+    {
+      "id": 4,
+      "title": "GRAVEDAD CONSCIENTE (Presión Isométrica)",
+      "objetivo_clinico": "Estimulación propioceptiva profunda para recuperar el límite corporal.",
+      "cuando_usarla": "Mareos por ansiedad, despersonalización o sensación de vértigo emocional.",
+      "step_1": "Vamos a devolverle el control a tus músculos para que tu cerebro recupere el equilibrio. Siéntate en una silla con la espalda recta, apoya ambos pies firmes en el piso y pon tus manos sobre tus muslos. Dime cuando estés listo/a.",
+      "step_2": "Presiona tus pies contra el suelo lo más fuerte que puedas, como si quisieras hundirlos. Al mismo tiempo, presiona tus manos contra tus muslos hacia abajo. Mantén esa fuerza 5 segundos y suelta. Hazlo 3 veces y avísame.",
+      "step_3": "Siente cómo la presión te devuelve el borde de tu propio cuerpo. Le acabas de enviar una señal de firmeza a tu cerebro. Tú tienes el control total del espacio que ocupas en esta ciudad."
+    },
+    {
+      "id": 5,
+      "title": "EL ABRAZO DE MARIPOSA (Estimulación Bilateral EMDR)",
+      "objetivo_clinico": "Reconexión interhemisférica para procesar la sobrecarga emocional sin desborde.",
+      "cuando_usarla": "Llanto angustioso, soledad profunda, necesidad urgente de contención física.",
+      "step_1": "La falta de los abrazos de nuestra gente duele en la piel. Vamos a usar una técnica clínica para darte contención neurológica. Cruza tus brazos sobre el pecho, apoyando las yemas de tus dedos justo debajo de tus clavículas (como si te abrazaras). Avísame al estar así.",
+      "step_2": "Cierra los ojos. Empieza a darte golpecitos suaves alternando las manos: derecha, izquierda, derecha, izquierda. Mantén este aleteo suave respirando a tu ritmo durante un minuto. Deja que vengan las imágenes que sean. Escríbeme al terminar.",
+      "step_3": "Este movimiento alterno ayuda a los dos hemisferios de tu cerebro a procesar la tristeza sin que te desbordes. Te estás dando la contención física que necesitas; eres tu propio lugar seguro hoy."
+    },
+    {
+      "id": 6,
+      "title": "EVALUACIÓN DE SÍNTOMAS SOMÁTICOS (Descarte Médico)",
+      "objetivo_clinico": "Psicoeducación sobre somatización y derivación ética.",
+      "cuando_usarla": "Malestar físico persistente (náuseas, dolores, agotamiento extremo).",
+      "step_1": "El cuerpo absorbe todo el estrés que la mente migrante intenta callar. Es muy habitual que el duelo se manifieste con dolores o agotamiento, porque tu sistema nervioso lleva meses en alerta. Sin embargo, clínicamente siempre debemos descartar primero una causa médica. ¿Te gustaría saber cómo proceder de forma segura aquí en Cataluña?",
+      "step_2": "Si este malestar persiste o altera tu vida diaria, te aconsejo pedir cita en tu CAP (Centre d'Atenció Primària) para un chequeo general. Recuerda que si el dolor es incapacitante, puedes acudir a Urgencias de cualquier hospital público sin importar tu situación administrativa. ¿Has pensado en revisarlo con un médico general primero?",
+      "step_3": "Una vez que la medicina confirme que tu cuerpo está sano y se trata de tensión acumulada por el cambio de vida, podremos trabajar juntos con técnicas somáticas. Escucha a tu cuerpo, él siempre avisa cuando la carga es demasiada."
+    },
+    {
+      "id": 7,
+      "title": "TÉCNICA DE ENRAIZAMIENTO (5-4-3-2-1)",
+      "objetivo_clinico": "Desconectar la rumiación de la amígdala y activar la corteza prefrontal.",
+      "cuando_usarla": "Malestar generalizado, mente acelerada hacia el futuro o miedos.",
+      "step_1": "Cuando la ansiedad sube, nuestra mente viaja al futuro imaginando escenarios terribles. Para frenar eso, tenemos que obligar a tu cerebro racional a trabajar. ¿Me acompañas con un ejercicio rápido de reconexión sensorial?",
+      "step_2": "Mira a tu alrededor y escríbeme 5 cosas que puedas ver. Luego 4 que puedas sentir físicamente (como la textura de tu ropa). Luego 3 que escuches ahora mismo. Luego 2 que puedas oler y 1 que puedas saborear. Escríbeme tu lista aquí.",
+      "step_3": "Excelente trabajo. Al forzar a tu cerebro a buscar esta información en el entorno, le cortaste el suministro de energía a los pensamientos de angustia. Te trajiste de vuelta al presente."
+    },
+    {
+      "id": 8,
+      "title": "RESPIRACIÓN EN CAJA (Modulación 4-4-4-4)",
+      "objetivo_clinico": "Equilibrar los niveles de O2 y CO2 para detener la hiperventilación ansiosa.",
+      "cuando_usarla": "Sensación de \"nudo en el pecho\" leve/moderado.",
+      "step_1": "Ese nudo en el pecho no es peligroso, ocurre porque el estrés vuelve tu respiración superficial y se desequilibra el oxígeno. ¿Hacemos un ejercicio estructurado para devolverle el ritmo biológico a tu corazón?",
+      "step_2": "Vacía todo el aire. Toma aire contando lentamente hasta 4... Sostén el aire 4 segundos... Bota el aire por la boca 4... y quédate sin aire 4. Haz este ciclo tres veces seguidas, prestando atención solo a los números, y escríbeme.",
+      "step_3": "Perfecto. Al estructurar la entrada y salida de aire, le acabas de enviar un mensaje químico a tu tronco encefálico de que no hay ninguna amenaza real. Tu cuerpo vuelve a su centro."
+    },
+    {
+      "id": 9,
+      "title": "EL SUSPIRO FISIOLÓGICO (Expansión Alveolar)",
+      "objetivo_clinico": "Intervención neurobiológica rápida (basada en Huberman Lab) para reducir cortisol.",
+      "cuando_usarla": "Taquicardia repentina, llanto entrecortado o pico agudo de estrés.",
+      "step_1": "Para estabilizar esa sensación aguda, vamos a usar un reflejo biológico que tienen todos los mamíferos para calmarse. Toma aire por la nariz muy profundamente, y cuando sientas que ya no entra más, toma una segunda inhalación cortita y rápida por la nariz. Hazlo ahora.",
+      "step_2": "Ahora bota todo ese aire por la boca haciendo un suspiro muy largo y sonoro. Repite este ciclo de (Inhalación larga + Inhalación corta + Suspiro) 3 veces seguidas y me cuentas.",
+      "step_3": "Esa doble inhalación forzó la apertura de los pequeños sacos de tus pulmones, expulsando el dióxido de carbono atrapado. Acabas de colapsar la señal de pánico hacia tu cerebro en tiempo récord."
+    },
+    {
+      "id": 10,
+      "title": "RESPIRACIÓN 4-7-8 (Sedación Vagal)",
+      "objetivo_clinico": "Estimulación directa del nervio vago para inducir sedación del sistema simpático.",
+      "cuando_usarla": "Insomnio de conciliación, nerviosismo nocturno sostenido.",
+      "step_1": "No puedes dormir porque tu sistema de alerta sigue encendido buscando amenazas. Existe un ritmo específico de respiración que presiona el 'freno' de ese sistema activando el nervio vago. ¿Te animas a probarlo en la cama?",
+      "step_2": "Pon la punta de la lengua tras los dientes superiores. Inhala por la nariz en 4 tiempos... Aguanta la respiración en 7... y exhala haciendo un suave sonido de 'shhh' por la boca en 8 tiempos. Haz 4 ciclos completos y avísame cómo sientes los músculos.",
+      "step_3": "Al hacer que la exhalación (8) sea el doble de la inhalación (4), obligas químicamente a tu corazón a latir más despacio. Has preparado tu cuerpo para rendirse al sueño."
+    },
+    {
+      "id": 11,
+      "title": "EL BOTIQUÍN DE MADRUGADA (Fatiga Ejecutiva)",
+      "objetivo_clinico": "Agotar la atención de la corteza prefrontal para inducir el sueño.",
+      "cuando_usarla": "Insomnio de mantenimiento (despertar entre 00:00 y 06:00 AM) con pensamientos recurrentes.",
+      "step_1": "De noche, por un tema evolutivo, la mente pierde perspectiva y percibe los problemas como gigantes. Intentar resolver tu vida a las 3 AM es una trampa de la ansiedad. ¿Me permites darte un ejercicio muy aburrido para agotar a tu cerebro?",
+      "step_2": "Acuéstate a oscuras. Vas a contar mentalmente hacia atrás desde el número 1000, pero restando de 7 en 7 (1000, 993, 986...). Si te equivocas o te pierdes, vuelves a empezar desde 1000. Deja el móvil boca abajo y hazlo.",
+      "step_3": "Este trabajo aritmético requiere tanta concentración que desactiva el área del cerebro que genera los pensamientos de preocupación. Te dejo descansar, ríndete al aburrimiento."
+    },
+    {
+      "id": 12,
+      "title": "DESCARGA COGNITIVA NOCTURNA (Brain Dump)",
+      "objetivo_clinico": "Externalización de preocupaciones para liberar la Memoria de Trabajo.",
+      "cuando_usarla": "Ansiedad por trámites o tareas pendientes al intentar dormir.",
+      "step_1": "Tu mente no te deja dormir porque teme olvidar todo lo que debes resolver mañana. Está usando tu energía para retener datos. ¿Te gustaría aplicar una técnica para descargar esa memoria y poder apagar el sistema?",
+      "step_2": "Busca papel y lápiz real (no el móvil). Escribe una lista con todas tus preocupaciones y pendientes de mañana, por muy pequeños que sean. Vacía tu cabeza ahí. Avísame al terminar.",
+      "step_3": "Dobla ese papel y déjalo lejos de la cama. Acabas de trasladar la responsabilidad de recordar desde tu cerebro hacia el papel. Mañana te encargas; esta noche, estás fuera de servicio."
+    },
+    {
+      "id": 13,
+      "title": "EL ESPEJISMO DEL SUEÑO (Desmontando la Obligación)",
+      "objetivo_clinico": "Defusión cognitiva de la presión social del \"éxito\" migratorio.",
+      "cuando_usarla": "Culpa por no estar feliz, sensación de ser \"desagradecido/a\" por las oportunidades.",
+      "step_1": "Existe un mito tóxico de que migrar es 'cumplir un sueño' y, por tanto, deberías estar feliz y agradecido cada día. Pero clínicamente, migrar es una amputación temporal. Has perdido tus referentes. Sentirse roto/a es la única respuesta lógica. ¿Me dejas ayudarte a quitarte ese peso de la culpa?",
+      "step_2": "Las emociones no se cancelan entre sí. Que tengas un mejor trabajo aquí no elimina el dolor profundo de no poder abrazar a tu familia. Escríbeme esta frase para validarlo: 'He logrado cosas buenas, pero hoy me doy permiso para estar triste'.",
+      "step_3": "Esa es tu verdad clínica. Validar tu tristeza es el primer paso para adaptarte. Reprimirla porque 'deberías ser fuerte' solo la transforma en ansiedad y ataques de pánico. Hoy cuida de ti sin culpas."
+    },
+    {
+      "id": 14,
+      "title": "LA REGLA DE LOS 5 MINUTOS (Ruptura de Inercia)",
+      "objetivo_clinico": "Burlar la disfunción ejecutiva y la apatía depresiva.",
+      "cuando_usarla": "Bloqueo total para buscar trabajo, hacer papeles o incluso limpiar la casa.",
+      "step_1": "Ese cansancio que sientes no es pereza, es sobrecarga cognitiva. Tu cerebro ve la montaña de trámites de un país nuevo y se paraliza por ahorro de energía. ¿Te gustaría probar un truco clínico para engañar a ese bloqueo?",
+      "step_2": "Dime una sola tarea que lleves días posponiendo. Te propongo un trato: dedícale exactamente 5 minutos de reloj. Pon una alarma. Si a los 5 minutos quieres parar y tirarte al sofá, te detienes sin ninguna culpa. ¿Vas a intentarlo ahora?",
+      "step_3": "Romper la inercia es el 90% de la batalla. En psicología sabemos que la motivación llega después de empezar la acción, no antes. Esos 5 minutos ya son una victoria gigante."
+    },
+    {
+      "id": 15,
+      "title": "FRAGMENTACIÓN DE TAREAS (Micro-Steps)",
+      "objetivo_clinico": "Reducir la ansiedad anticipatoria ante burocracia extranjera.",
+      "cuando_usarla": "Sensación de agobio masivo, el usuario dice \"no sé por dónde empezar\".",
+      "step_1": "El cerebro humano se asusta y se bloquea ante instrucciones abstractas como 'conseguir empadronamiento' o 'buscar piso'. Suena inabarcable. ¿Te animas a desarmar esa gran amenaza para quitarle el peso?",
+      "step_2": "Escríbeme tu meta principal. Ahora divídela en 3 micro-pasos absurdamente simples y físicos (ej. 1. Abrir la laptop, 2. Buscar la web del Ajuntament, 3. Leer los requisitos). Escríbelos.",
+      "step_3": "Hoy tu única meta en la vida es hacer el Paso 1. Olvida el resto del proceso. Al completarlo, tu cerebro liberará un pequeño pico de dopamina que te dará energía real para seguir mañana."
+    },
+    {
+      "id": 16,
+      "title": "HIGIENE DEL SUEÑO (Control de Estímulos TCC-I)",
+      "objetivo_clinico": "Reestructuración ambiental para reasociar la cama con el descanso.",
+      "cuando_usarla": "Dificultad persistente para dormir sin llegar a la angustia aguda.",
+      "step_1": "Dar vueltas en la cama por horas le enseña por condicionamiento a tu cerebro que ese colchón es una zona de guerra para estresarse, no para dormir. ¿Te gustaría aplicar una regla clínica para reentrenar tu sueño?",
+      "step_2": "Esta es la regla de oro: si llevas 20 minutos sin dormir y sientes frustración, levántate. Sal de la cama, ve a otra silla con luz muy tenue y haz algo analógico y aburrido (leer un manual, tejer, hacer un puzzle) sin usar pantallas. Vuelve a la cama solo cuando los párpados pesen. ¿Qué actividad elegirás esta noche?",
+      "step_3": "Con constancia, le demostraremos a tu sistema nervioso que las sábanas están destinadas exclusivamente al descanso pesado, rompiendo la asociación con la ansiedad de ser migrante."
+    },
+    {
+      "id": 17,
+      "title": "EL ANCLA FÍSICA (Domesticación del Espacio)",
+      "objetivo_clinico": "Reducción del cortisol ambiental y construcción gradual de pertenencia.",
+      "cuando_usarla": "Apatía, aislamiento total, sensación de que Barcelona es enorme y hostil.",
+      "step_1": "Cuando llegamos a una ciudad nueva, nuestro cerebro primitivo la percibe inmensa e impredecible, manteniéndonos en alerta como 'forasteros' bajo amenaza. Para empezar a pertenecer, no necesitas recorrer Barcelona entera, sino domesticar un pequeño rincón. ¿Me dejas darte una tarea para esto?",
+      "step_2": "Busca una plaza, un banco o una cafetería a menos de 10 minutos de tu casa. Tu tarea esta semana será ir a sentarte a ese lugar exacto, a la misma hora, durante tres días seguidos. No tienes que hablar con nadie si no quieres. ¿Te animas a probarlo?",
+      "step_3": "Al repetir la acción, le enseñas a tu cerebro por exposición que ese rincón es conocido y seguro. Al ver lo mismo todos los días, sentirás que ya eres parte del paisaje. El arraigo se construye de a un metro cuadrado a la vez."
+    },
+    {
+      "id": 18,
+      "title": "EL MAPA DE MIS REFUGIOS",
+      "objetivo_clinico": "Disminución del desarraigo creando micro-territorios de seguridad psicológica.",
+      "cuando_usarla": "Sensación aguda de no tener hogar (\"no me siento en casa en ningún lado\").",
+      "step_1": "El desarraigo nos hace sentir que el mundo entero es ajeno, y eso agota el alma. La pertenencia empieza identificando espacios donde nuestra mente pueda bajar las defensas por completo. ¿Te gustaría que armemos un 'mapa de refugios' exclusivos para ti?",
+      "step_2": "Busquemos un lugar fuera de casa donde puedas estar horas sin que nadie te exija interactuar, consumir o producir (una biblioteca pública, un rincón de Montjuïc, una iglesia). Dime un lugar que te llame la atención y al que puedas ir fácilmente.",
+      "step_3": "Ese será tu refugio oficial en la ciudad. Hacer tuyo un espacio físico le da a tu mente un ancla. Cuando estés ahí dentro, ya no serás extranjero/a, serás el dueño/a de tu propio espacio."
+    },
+    {
+      "id": 19,
+      "title": "EL OBSERVADOR DE BARRIO (Desensibilización)",
+      "objetivo_clinico": "Prevención de respuesta ante la ansiedad social por aculturación.",
+      "cuando_usarla": "Frustración intensa por no encajar, miedo al juicio de los catalanes/locales.",
+      "step_1": "Intentar encajar en una nueva cultura de golpe y hablar perfecto genera una ansiedad de desempeño paralizante. ¿Qué tal si te quitas esa presión hoy y hacemos un ejercicio clínico de observación segura?",
+      "step_2": "Esta tarde jugarás a ser un 'investigador invisible'. Ve a una plaza o mercado y solo observa cómo interactúa la gente local: cómo se saludan, qué distancias guardan, sus ritmos. Todo esto con la regla estricta de NO intentar participar. Avísame luego cómo te fue.",
+      "step_3": "Observar desde un rincón seguro te familiariza con los códigos culturales locales bajando las defensas. Le muestras a tu cerebro que el entorno no es peligroso, reduciendo la ansiedad anticipatoria."
+    },
+    {
+      "id": 20,
+      "title": "EL PUENTE LINGÜÍSTICO (Micro-Aproximación)",
+      "objetivo_clinico": "Micro-aproximación conductual para romper la barrera exogrupal.",
+      "cuando_usarla": "Sentirse perpetuamente \"de fuera\", alienado o bloqueado por no hablar catalán.",
+      "step_1": "A veces, usar una sola palabra de la cultura local rompe la barrera invisible de frialdad que sentimos con el entorno. Es un gesto de reconocimiento mutuo. ¿Te gustaría probar un micro-reto de solo dos segundos en tu próxima salida?",
+      "step_2": "Vamos a usar una palabra mágica. Puede ser decir 'Bon dia' (buenos días) al entrar al súper o 'Merci' (gracias) al pagar. ¿Cuál prefieres usar hoy? El reto es usarla solo una vez.",
+      "step_3": "Notarás cómo cambia sutilmente la mirada y la energía de la persona local al escucharlo. Con una palabra, acabas de construir un puente de respeto y conexión que acorta distancias."
+    },
+    {
+      "id": 21,
+      "title": "LA BÚSQUEDA DEL NICHO (Activación por Valores)",
+      "objetivo_clinico": "Activación conductual basada en identidad previa para evitar el aislamiento.",
+      "cuando_usarla": "Pérdida de identidad, soledad severa por falta de personas afines.",
+      "step_1": "Buscar amigos 'en general' en una ciudad inmensa rara vez funciona y genera mucha frustración. La conexión real ocurre orgánicamente cuando compartimos pasiones compartidas. ¿Te gustaría explorar qué actividad te ayudaría a reconectar con tu esencia aquí?",
+      "step_2": "Retrocede en el tiempo: antes de todo el estrés de migrar, ¿qué actividad te hacía perder la noción del tiempo? (Correr, pintar, bailar, juegos de mesa). Tu meta esta semana es buscar en internet un solo grupo o espacio en Barcelona enfocado exclusivamente en eso.",
+      "step_3": "No vayas con la presión de 'hacer amigos', ve solo a disfrutar de tu hobby. Recuperar tu identidad previa te servirá de imán natural para atraer a personas con las que sí vibres."
+    },
+    {
+      "id": 22,
+      "title": "LA PREGUNTA PUENTE (Script Social)",
+      "objetivo_clinico": "Proporcionar un guion conductual seguro para iniciar socialización sin riesgo de rechazo.",
+      "cuando_usarla": "Deseo profundo de hablar con locales pero con parálisis por miedo a ser invasivo.",
+      "step_1": "Entiendo el miedo a incomodar, todos lo sentimos al llegar. Clínicamente, la forma más segura de iniciar una interacción en una cultura nueva es pedir un consejo breve, ya que halaga a la otra persona sin exigirle intimidad. ¿Te gustaría practicar esta fórmula?",
+      "step_2": "¿De qué te gustaría pedir recomendación barata o sencilla? (Una panadería, un lugar para caminar). La próxima vez que veas a alguien relajado, usa esta frase: 'Hola, perdona, soy nuevo/a aquí, ¿conoces algún buen lugar para [lo que elegiste]?'. ¿Te animas?",
+      "step_3": "Esa micro-interacción le demostrará empíricamente a tu cerebro que las personas aquí están dispuestas a ayudar. El mundo exterior dejará de parecer tan cerrado."
+    },
+    {
+      "id": 23,
+      "title": "EL ENSAYO DE EVENTOS (Vía de Escape)",
+      "objetivo_clinico": "Desensibilización sistémica ante ansiedad anticipatoria social.",
+      "cuando_usarla": "Cuando el usuario quiere cancelar a última hora un encuentro social por miedo.",
+      "step_1": "Es sumamente común que el cerebro invente cansancio o excusas de última hora para no ir a algo nuevo porque le aterra lo desconocido. ¿Te animas a crear una 'red de seguridad' psicológica para que puedas ir con más tranquilidad?",
+      "step_2": "Escríbeme qué es lo peor que imaginas que podría pasar si vas. Luego, planearemos tu vía de escape oficial: elige una excusa socialmente irrefutable (ej. 'dejé a mi perro solo', 'tengo una llamada urgente de mi país') para irte a los 30 minutos si la ansiedad sube. Dime tu excusa.",
+      "step_3": "Ve con esa excusa en el bolsillo. Tu única meta es resistir 30 minutos de reloj. Saber que tienes el control absoluto y que puedes irte legalmente cuando quieras, reduce la ansiedad anticipatoria a la mitad."
+    },
+    {
+      "id": 24,
+      "title": "EL MICRO-RESPIRO DEL CUIDADOR (Cortafuegos del Estrés)",
+      "objetivo_clinico": "Cortar la sobrecarga alostática para prevenir el Burnout por cuidados familiares.",
+      "cuando_usarla": "Fatiga física y emocional extrema por sostener a hijos, pareja o familia en la migración.",
+      "step_1": "Migrar a cargo de otros triplica el esfuerzo, ya que tu sistema nervioso absorbe el impacto emocional por ti y por ellos. Esto genera un desgaste crónico peligroso. ¿Me dejas ayudarte a fijar un límite físico indispensable de autocuidado para hoy?",
+      "step_2": "Necesitas fijar un 'Micro-Respiro' de 15 minutos diarios donde literalmente no existas para nadie. Te encerrarás en una habitación o saldrás a caminar sin teléfono. Si no hay sangre ni fuego, no respondes. ¿En qué momento exacto del día lo harás y cómo se lo comunicarás a tu familia?",
+      "step_3": "Ese espacio vacío es tu oxígeno innegociable. Un cuidador exhausto y resentido no puede sostener a su familia a largo plazo. Defiende esos 15 minutos como si fueran medicina."
+    },
+    {
+      "id": 25,
+      "title": "LA RECETA DE LA MEMORIA (Terapia Sensorial)",
+      "objetivo_clinico": "Activación olfativo-gustativa para procesar saludablemente la nostalgia.",
+      "cuando_usarla": "\"Extrañitis\" profunda, dolor punzante por la cultura de origen.",
+      "step_1": "El olfato y el gusto son los sentidos que conectan más directo con la amígdala (el cerebro emocional). Cuando extrañamos nuestras raíces, el cuerpo literalmente necesita saborearlas para calmarse. ¿Te gustaría hacer un ritual culinario para honrar de dónde vienes?",
+      "step_2": "¿Qué plato sencillo te transporta directo a la cocina de tu casa? Tu tarea será buscar los ingredientes en algún mercado de Barcelona. Prepararlo es el objetivo de la semana; pon música de tu tierra mientras cocinas. ¿Qué plato harás?",
+      "step_3": "Integrar tu comida de siempre en esta ciudad europea le enseña a tu mente profunda que migrar no significa borrar tus sabores ni traicionarte; significa que tu mesa ahora es más grande y abraza ambas culturas."
+    },
+    {
+      "id": 26,
+      "title": "EL DIARIO DEL PUENTE (Flexibilidad Psicológica)",
+      "objetivo_clinico": "Combatir la rigidez y el pensamiento dicotómico (idealización vs. devaluación).",
+      "cuando_usarla": "Polarización extrema (cuando el usuario siente que su país era perfecto y Barcelona es terrible, o viceversa).",
+      "step_1": "La mente estresada tiende a pensar en blanco y negro. Solemos creer erróneamente que si nos gusta algo de aquí, estamos traicionando a nuestro país, o que para amar nuestro origen debemos rechazar lo nuevo. ¿Te gustaría hacer un ejercicio para reconciliar ambas realidades?",
+      "step_2": "Escríbeme una cosa de tu país que eches muchísimo de menos hoy, sin intentar justificarlo. Luego, escríbeme una pequeña cosa de Barcelona que hoy te haya parecido agradable, útil o bonita. Pon las dos juntas.",
+      "step_3": "Ambas verdades tienen derecho a coexistir. Puedes amar profundamente tu hogar y a la vez darle espacio a las cosas buenas de aquí. Esa capacidad de sostener ambas emociones a la vez es lo que te hace resiliente."
+    },
+    {
+      "id": 27,
+      "title": "DESACTIVACIÓN DE LA CULPA (Defusión de Mandatos)",
+      "objetivo_clinico": "Defusión del mandato emocional migratorio del \"privilegio\".",
+      "cuando_usarla": "Culpa por estar deprimido en un país \"seguro\" o por tener oportunidades que otros no tienen.",
+      "step_1": "Tu sistema nervioso no entiende de pasaportes, sueldos o economía; solo entiende de vínculos y pérdida de territorio. Sentir tristeza profunda no invalida tu gratitud por estar aquí. ¿Te animas a hacer una declaración para soltar el peso de esa culpa?",
+      "step_2": "¿Qué emoción te estás prohibiendo sentir hoy porque 'deberías estar agradecido/a'? Repite ahora mismo esta frase como un mantra clínico: 'Tengo derecho absoluto a estar triste, aunque yo mismo haya elegido venir'. Escríbela para reafirmarlo.",
+      "step_3": "El dolor por todo lo que dejaste atrás y el agradecimiento por lo que estás logrando pueden existir en el mismo corazón sin anularse. Validar esta dualidad desactiva el conflicto interno."
+    },
+    {
+      "id": 28,
+      "title": "LA CARTA AL YO DEL FUTURO (Terapia Narrativa)",
+      "objetivo_clinico": "Distanciamiento temporal temporal (Temporal distancing) para reducir desesperanza.",
+      "cuando_usarla": "Sensación de agujero negro, de que el sufrimiento actual será eterno y nada mejorará.",
+      "step_1": "Cuando las cosas duelen mucho, el cerebro pierde la perspectiva temporal y nos engaña haciéndonos creer que este malestar será eterno. Es una distorsión cognitiva que roba toda la esperanza. ¿Te gustaría hacer un ejercicio narrativo para proyectarte más allá de esta crisis?",
+      "step_2": "Toma un papel y escríbele una carta a tu 'Yo' de dentro de 6 meses exactos. Explícale sin filtros lo duro que está siendo el día de hoy, pero también recuérdale por qué tomaste la valiente decisión de migrar y qué esperas que él/ella haya logrado para esa fecha. Avísame al terminar.",
+      "step_3": "Guárdala bien y pon una alarma en el móvil para leerla en 6 meses. El objetivo clínico de leerla en el futuro es que seas testigo presencial de tu propia resiliencia, viendo con tus ojos cómo lograste superar los días que parecían imposibles de sobrevivir."
+    },
+    {
+      "id": 29,
+      "title": "MIS RAÍCES MÓVILES (Reconexión Identitaria)",
+      "objetivo_clinico": "Internalizar la identidad cultural en los valores nucleares, separándola de la geografía física.",
+      "cuando_usarla": "Despersonalización leve, sensación de \"no pertenecer a ninguna parte\", pérdida de identidad.",
+      "step_1": "Solemos tener la ilusión de que dejamos nuestra identidad clavada en la tierra de la que venimos, y por eso nos sentimos vacíos aquí. Pero en psicología sabemos que la identidad viaja en tu cuerpo; no eres el suelo que pisas. ¿Te gustaría hacer un ejercicio con un objeto para reconectar con esa esencia?",
+      "step_2": "Busca un objeto significativo que hayas traído de tu país en la maleta (una foto, un pañuelo, un adorno). Tómalo en tus manos. Este objeto es un ancla física a tu historia. Escríbeme: ¿Qué rasgo de tu fuerza, de tus valores o de tu cultura familiar sientes que representa ese objeto?",
+      "step_3": "Toda esa fuerza que describiste está viva dentro de ti ahora mismo. Pon ese objeto a la vista en tu casa. Cuando sientas que te desdibujas o que no eres de aquí, míralo y recuerda: el suelo es nuevo, pero la semilla original eres tú. Tus raíces son móviles."
+    },
+    {
+      "id": 30,
+      "title": "EL HUÉSPED INVITADO (Aceptación Radical - ACT)",
+      "objetivo_clinico": "Cese de la evitación experiencial y aceptación radical de la soledad.",
+      "cuando_usarla": "Lucha constante y agotadora contra la sensación de vacío y aislamiento crónico.",
+      "step_1": "Luchar contra la soledad intentando distraerte todo el tiempo te agota y solo aumenta el sufrimiento. En Terapia de Aceptación, sabemos que a las emociones incómodas hay que dejarles espacio para que pierdan fuerza. ¿Qué tal si hacemos un ejercicio de aceptación radical para que deje de doler tanta resistencia?",
+      "step_2": "Imagina que la Soledad es un huésped físico sentado frente a ti en la sala. Si pudiera hablar, ¿qué te pediría que miraras hoy? En lugar de echarla, dile mentalmente: 'Te veo, sé que estás aquí. Puedes quedarte un rato, no te voy a pelear'. Respira hondo y dime qué sientes al no luchar.",
+      "step_3": "La soledad no es una debilidad tuya, es simplemente la prueba neurológica de que sabes amar profundamente y extrañas tus vínculos. Hacerle espacio le quita su poder destructivo. Te acompaño en silencio mientras esté de visita."
+    },
+    {
+      "id": 31,
+      "title": "EL ABRAZO COMPASIVO (Regulación por Oxitocina)",
+      "objetivo_clinico": "Activación del sistema neurobiológico de afiliación y autocuidado.",
+      "cuando_usarla": "Desamparo agudo, sensación de abandono, necesidad de contención materna/paterna.",
+      "step_1": "La falta del contacto físico de nuestra gente genera un síndrome de abstinencia real en el cuerpo. Pero la buena noticia es que tu propio organismo reacciona positivamente al calor y al cuidado táctil autogenerado. ¿Me permites guiarte en una técnica para darte esa contención biológica?",
+      "step_2": "Pon tu mano derecha firme sobre tu corazón y tu mano izquierda sobre tu abdomen. Siente el calor de tus palmas. Respira suavemente. Háblate en voz alta usando tu propio nombre, con la misma voz tierna que usarías para calmar a un niño asustado: 'Esto es muy difícil, pero estoy aquí contigo. Te tengo. Estás a salvo'. Dime qué sientes en el pecho.",
+      "step_3": "Esa calma tibia es tu cuerpo liberando oxitocina pura, la hormona del apego y el cuidado. Tú tienes la capacidad física de ser tu propio refugio en esta ciudad. Quédate en esa posición todo el tiempo que necesites."
+    },
+    {
+      "id": 32,
+      "title": "EL HILO INVISIBLE (Asertividad Transnacional)",
+      "objetivo_clinico": "Pauta asertiva para el manejo de los vínculos familiares a larga distancia.",
+      "cuando_usarla": "Fricción, culpa o aislamiento comunicativo con la familia que quedó en el país de origen.",
+      "step_1": "Sostener vínculos a miles de kilómetros es un desafío clínico enorme. A veces mentimos para no preocuparlos, o nos quejamos tanto que terminamos desgastando la relación y sintiéndonos más solos. ¿Te gustaría preparar una estrategia de comunicación más sana para hoy?",
+      "step_2": "¿Qué es lo que más te frustra al hablar con ellos últimamente? Para tu próximo mensaje o llamada, elige compartir una sola cosa cotidiana y real que conecte ambos mundos (una anécdota tonta del supermercado, que cocinaste algo) sin dramatismo pero sin falsa positividad. ¿Qué pequeña historia cotidiana les contarás?",
+      "step_3": "Esta estrategia mantiene el hilo invisible sano. Compartir los pequeños detalles cotidianos sostiene el amor y la conexión muchísimo mejor que las grandes declaraciones de tristeza o de éxito absoluto."
+    },
+    {
+      "id": 33,
+      "title": "EL SÍNDROME DEL CUIDADOR MIGRANTE (Fatiga por Compasión)",
+      "objetivo_clinico": "Validación clínica del resentimiento como síntoma de sobrecarga sistémica.",
+      "cuando_usarla": "Cuando el cuidador principal siente resentimiento hacia los hijos o pareja y luego se culpa brutalmente por ello.",
+      "step_1": "Cuando eres el pilar de todos en un país nuevo, tu sistema nervioso vive en hipervigilancia. Sentir que tu familia es un peso enorme no te hace mala persona en absoluto. Clínicamente se llama 'Fatiga por compasión', y es el síntoma de que tu empatía está al límite operativo. ¿Te gustaría liberar la culpa de sentir eso?",
+      "step_2": "Esa culpa que te impones es profundamente injusta con tu esfuerzo. Repite mentalmente o escríbeme para materializarlo: 'Amo a mi familia con locura, pero estoy física y mentalmente exhausto/a, y tengo derecho humano a quejarme de esta carga tremenda'. ¿Cómo se siente validar eso en voz alta?",
+      "step_3": "Valida tu cansancio crónico. Llorar por el peso inmenso de la responsabilidad libera presión de la olla. Tienes permiso clínico y absoluto para no ser el/la fuerte todo el tiempo."
+    },
+    {
+      "id": 34,
+      "title": "EL YO MÁS ALLÁ DEL CUIDADO (Des-fusión del Rol)",
+      "objetivo_clinico": "Prevención de la despersonalización en migrantes con personas a cargo.",
+      "cuando_usarla": "Pérdida total de identidad individual al haber sido absorbido por el rol de proveedor/cuidador.",
+      "step_1": "Al migrar con personas a cargo, es casi inevitable que el rol de cuidador/a devore el 100% de tu identidad, haciéndote olvidar quién eras tú antes del viaje. Pero tu esencia sigue intacta debajo de las ojeras. ¿Te gustaría buscar una forma de reconectar con tu individuo?",
+      "step_2": "Haz memoria: antes de ser el soporte de todos y de la preocupación por los trámites, ¿qué rasgo de tu personalidad (tu humor, tu curiosidad) te gustaba mucho? ¿Qué pequeña acción egoísta y personal podrías hacer esta semana que conecte solo con esa parte de ti?",
+      "step_3": "Reconectar con tu 'Yo' independiente es lo único que te dará fuerza real y renovada para sostener a los otros. Eres muchísimo más que tu rol funcional para la familia."
+    },
+    {
+      "id": 35,
+      "title": "EL FILTRO DE LA EXPECTATIVA SOCIAL (Reestructuración)",
+      "objetivo_clinico": "Reestructuración cognitiva de las expectativas vinculares iniciales para evitar la decepción.",
+      "cuando_usarla": "Decepción profunda porque las relaciones con los locales (o latinos residentes) parecen superficiales o frías.",
+      "step_1": "A menudo sufrimos horrores porque, desde nuestra soledad, le exigimos a vínculos de un mes la misma profundidad y lealtad que a los amigos de la infancia que dejamos atrás. Es una expectativa que solo lastima. ¿Te gustaría aprender a ajustar ese filtro cognitivo para sufrir menos?",
+      "step_2": "Cambiemos el lente temporal: durante tu primer año, solo debes buscar 'compañeros de etapa' (alguien para ir por un café o preguntar una duda, no para entender los dolores de tu alma). Escríbeme: ¿Qué pasaría con tu ansiedad si hoy solo buscaras un compañero superficial para caminar un rato, sin exigirle nada más?",
+      "step_3": "Quitar la pesada expectativa de la amistad perfecta te permite disfrutar las conexiones ligeras. Las raíces profundas tardan años en crecer en tierra nueva; hoy solo estamos plantando pequeñas semillas."
+    },
+    {
+      "id": 36,
+      "title": "EL ESPACIO DE LA NOSTALGIA (Control de Estímulos)",
+      "objetivo_clinico": "Control de estímulos y compartimentalización frente a la rumiación melancólica.",
+      "cuando_usarla": "Tristeza invasiva que se cuela a todas horas e impide funcionar en el trabajo o estudios.",
+      "step_1": "Cuando intentamos reprimir la tristeza o 'hacernos los fuertes', la nostalgia actúa como agua a presión: se filtra e invade todo tu día. ¿Te gustaría aplicar una técnica clínica para darle a la tristeza su propio espacio de honor sin que secuestre toda tu jornada?",
+      "step_2": "Elige un momento del día de exactamente 20 minutos (preferiblemente no antes de dormir) y un rincón específico de tu casa. Ese será tu 'Espacio Oficial de la Nostalgia', donde tienes permiso absoluto para llorar, mirar fotos viejas y extrañar sin frenos. Dime qué horario y rincón elegiste.",
+      "step_3": "Si la tristeza llega de golpe mientras trabajas o haces trámites, no te pelearás con ella, le dirás amablemente: 'Te atiendo en nuestro horario'. Con esto le enseñas a tu cerebro ejecutivo que tú eres quien administra el tiempo de tu vida, no la melancolía."
+    },
+    {
+      "id": 37,
+      "title": "EL DUELO DE LAS SILLAS VACÍAS (Ritualización)",
+      "objetivo_clinico": "Validación del dolor por eventos no compartidos y creación de rituales de duelo.",
+      "cuando_usarla": "Dolor y culpa desgarradora por perderse cumpleaños, bodas, nacimientos o entierros en el país de origen.",
+      "step_1": "La 'culpa del ausente' al ver por una pantalla cómo avanza la vida de tu gente sin ti duele físicamente en el pecho. Es uno de los precios más altos de migrar. ¿Te gustaría hacer un pequeño ritual para transformar esa culpa paralizante en una conexión real?",
+      "step_2": "¿Cuál es el evento reciente o próximo del que más te duele haberte quedado fuera? No dejes que la tristeza te aísle de ellos. ¿Qué pequeño acto simbólico (brindar tú solo a la misma hora, encender una vela, enviar un audio especial) puedes hacer para marcar tu presencia emocional desde aquí?",
+      "step_3": "Ese gesto íntimo es tu manera psicológica de ocupar tu silla vacía en esa mesa. Tu amor por ellos sigue intacto, y hacer el ritual le demuestra a tu mente que el cariño real sabe cruzar océanos."
+    },
+    {
+      "id": 38,
+      "title": "LA IDENTIDAD EN EXPANSIÓN (Aculturación Aditiva)",
+      "objetivo_clinico": "Encuadre cognitivo de la aculturación como un proceso aditivo, no sustitutivo.",
+      "cuando_usarla": "Miedo intenso a \"perder la esencia\", a que te llamen falso/a, o sentir que traicionas tu cultura al adaptarte.",
+      "step_1": "Es aterrador sentir que te dejas de reconocer en el espejo, pero clínicamente migrar no es borrar quién eras para convertirte forzosamente en un catalán. Es expandir tu identidad. Los cimientos originales no se rompen. ¿Te animas a ver cómo tus raíces siguen operando?",
+      "step_2": "¿Qué parte innegociable de tu esencia (tu ética de trabajo, tu alegría, tu empatía) sientes que permanece intacta desde que pisaste el aeropuerto? Aprender las costumbres de Barcelona no es traicionarte, es simplemente sumar herramientas nuevas a tu caja original. ¿Qué costumbre o palabra nueva has adoptado aquí que te parezca útil?",
+      "step_3": "Esa nueva herramienta convive en perfecta paz con todo el equipaje que trajiste. Tu identidad no se rompe por usar palabras nuevas, se amplía para abrazar dos mundos a la vez. Siempre, en tu núcleo, seguirás siendo tú."
+    }
+  ]
+}
