@@ -55,59 +55,83 @@ cursor.execute('''
 ''')
 conn.commit()
 
+WELCOME_TRIGGERS = {"hi", "hello", "hey", "hola", "ciao", "bonjour", "menu", "start"}
+
+WELCOME_TEXT = (
+    "🪹 *Hi! I'm Nouniu, your new nest in Barcelona.*\n"
+    "How can I help you settle in today?\n\n"
+    "*1* — 🤝 *Meet community* (Free local events & civic centers)\n"
+    "*2* — 🗣️ *Learn language* (Free Catalan & Spanish courses)\n"
+    "*3* — 🫂 *I need to talk* (24/7 confidential emotional grounding)\n\n"
+    "💬 _Reply 1, 2, or 3 — or just write freely in any language!_"
+)
+
+MENU_SHORTCUTS = {
+    "1": "What specific free events, workshops, or civic centers are in Barcelona to meet people?",
+    "2": "Where can I find free Catalan and Spanish courses like CPNL or language exchanges in Barcelona?",
+    "3": "I need to talk to someone right now, I'm feeling overwhelmed settling into Barcelona.",
+}
+
+
 @app.post("/whatsapp")
 async def whatsapp_webhook(Body: str = Form(""), From: str = Form("")):
     user_message = Body.strip()
+    clean_cmd = user_message.lower().rstrip("!.?, ")
     current_time = datetime.now().isoformat()
-    
-    # 5. State Management
-    use_welcome_template = False # Flag to trigger the Twilio buttons
-    
+    today_date = datetime.now().strftime("%Y-%m-%d")
+
     cursor.execute("SELECT * FROM users WHERE phone = ?", (From,))
     user_data = cursor.fetchone()
-    
+
     if not user_data:
-        today_date = datetime.now().strftime("%Y-%m-%d")
-        cursor.execute('''
-            INSERT INTO users (phone, start_date, interactions, history, profile, last_message)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (From, today_date, 0, json.dumps([]), json.dumps({}), current_time))
+        cursor.execute(
+            '''INSERT INTO users (phone, start_date, interactions, history, profile, last_message)
+               VALUES (?, ?, ?, ?, ?, ?)''',
+            (From, today_date, 0, json.dumps([]), json.dumps({}), current_time),
+        )
         conn.commit()
         cursor.execute("SELECT * FROM users WHERE phone = ?", (From,))
         user_data = cursor.fetchone()
 
-        # Empty first ping: keep the existing Twilio welcome template.
-        if not user_message:
-            use_welcome_template = True
-            ai_memory_text = "I greeted the user and gave them 3 options: 'Meet community', 'Learn language', or 'I need to talk'."
-            cursor.execute(
-                '''UPDATE users SET interactions = 1, history = ?, last_message = ?
-                   WHERE phone = ?''',
-                (json.dumps([{"role": "assistant", "content": ai_memory_text}]), current_time, From),
-            )
-            conn.commit()
-            output_message = "" # We leave this blank because Twilio handles the template
-            print("[MODE] welcome_template")
-            print("[SAFETY CHECK] skipped=empty_first_contact")
-            print("[FICHA STEP] none")
-            print("[DB/RAG] used=False reason=welcome_template")
-            try:
-                twilio_client.messages.create(from_=TWILIO_NUMBER, to=From, body=output_message)
-            except Exception as e:
-                print(f"❌ Twilio error: {e}")
-            return Response(content="", status_code=200)
+    # 5A. Instant reset + welcome menu for Loom retakes ("reset") or greetings ("hi", "menu")
+    if clean_cmd in {"reset", "/reset"} or clean_cmd in WELCOME_TRIGGERS or not user_message:
+        ai_memory_text = (
+            "I greeted the user with the Nouniu menu: "
+            "1) Meet community, 2) Learn language, 3) I need to talk."
+        )
+        # If "reset" is typed, wipe profile & history completely; on "hi"/"menu", clear active ficha/crisis lock cleanly
+        new_history = json.dumps([{"role": "assistant", "content": ai_memory_text}])
+        new_profile = json.dumps({}) if clean_cmd in {"reset", "/reset"} else (user_data[4] or json.dumps({}))
 
-    # Returning user (or first text message): safety gate + clinical / Barcelona RAG
+        cursor.execute(
+            '''UPDATE users SET interactions = 1, history = ?, profile = ?, last_message = ?
+               WHERE phone = ?''',
+            (new_history, new_profile, current_time, From),
+        )
+        conn.commit()
+
+        print(f"[MODE] {'session_reset' if clean_cmd in {'reset', '/reset'} else 'welcome_menu'}")
+        print("[DB/RAG] used=False reason=welcome_menu")
+        try:
+            twilio_client.messages.create(from_=TWILIO_NUMBER, to=From, body=WELCOME_TEXT)
+        except Exception as e:
+            print(f"❌ Twilio error: {e}")
+        return Response(content="", status_code=200)
+
+    # 5B. Expand 1 / 2 / 3 shortcuts while still letting free-text flow naturally
+    effective_message = MENU_SHORTCUTS.get(clean_cmd, user_message)
+
+    # 5C. Safety gate + clinical PAP / Barcelona RAG
     interactions = user_data[2] + 1
     recent_history = json.loads(user_data[3] or "[]")
-    recent_history.append({"role": "user", "content": user_message})
+    recent_history.append({"role": "user", "content": effective_message})
     recent_history = recent_history[-8:]
     raw_profile = user_data[4]
 
     turn = await handle_incoming(
         client_openai,
         index,
-        user_message,
+        effective_message,
         From,
         recent_history,
         raw_profile,
@@ -115,17 +139,18 @@ async def whatsapp_webhook(Body: str = Form(""), From: str = Form("")):
     output_message = turn["output_message"]
     recent_history.append({"role": "assistant", "content": output_message})
 
-    cursor.execute('''
-        UPDATE users
-        SET interactions = ?, history = ?, profile = ?, last_message = ?
-        WHERE phone = ?
-    ''', (
-        interactions,
-        json.dumps(recent_history),
-        json.dumps(turn["profile"], ensure_ascii=False),
-        current_time,
-        From,
-    ))
+    cursor.execute(
+        '''UPDATE users
+           SET interactions = ?, history = ?, profile = ?, last_message = ?
+           WHERE phone = ?''',
+        (
+            interactions,
+            json.dumps(recent_history),
+            json.dumps(turn["profile"], ensure_ascii=False),
+            current_time,
+            From,
+        ),
+    )
     conn.commit()
 
     # 6. Send via Twilio
