@@ -27,7 +27,8 @@ ANTI_INFINITY_BYE = (
 ACUTE_PATTERNS = [
     r"dolor(?:es)? (?:en )?el pecho",
     r"me duele (?:mucho )?el pecho",
-    r"opresi[oó]n en el pecho",
+    r"(?:opresi[oó]n|presi[oó]n) en el pecho",
+    r"coraz[oó]n (?:muy )?(?:a mil|acelerado|r[aá]pido|latiendo)",
     r"pecho cerrado",
     r"me falta el aire",
     r"se me va el aire",
@@ -35,7 +36,6 @@ ACUTE_PATTERNS = [
     r"ahogo",
     r"me ahogo",
     r"taquicardia",
-    r"coraz[oó]n a mil",
     r"ataque de p[aá]nico",
     r"crisis de angustia",
     r"llanto (?:descontrolado|incontrolable)",
@@ -555,6 +555,7 @@ async def generate_clinical_reply(
         extra.append(f"CURRENT LOCAL DATA FROM NOUNIU-DB:\n{retrieved_info}")
         extra.append(
             "Share concrete relevant details/links from CURRENT LOCAL DATA clearly. "
+            "Format for WhatsApp: write plain raw URLs (e.g. https://www.vxl.cat), NEVER Markdown links like [Name](url). "
             "If the user also asked about an official procedure (like empadronamiento, NIE, or CAP) "
             "not detailed in CURRENT LOCAL DATA, direct them accurately to Ajuntament de Barcelona "
             "(seuelectronica.ajuntament.barcelona.cat or calling 010 / OAC offices) without inventing steps."

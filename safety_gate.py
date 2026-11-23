@@ -42,6 +42,14 @@ CATEGORY_TO_SCENARIO = {
 KEYWORD_FALLBACK = {
     "A": [
         r"suicid",
+        r"self[- ]harm",
+        r"hurt myself",
+        r"harm myself",
+        r"end my life",
+        r"end it all",
+        r"hacerme da[ñn]o",
+        r"lastimarme",
+        r"quitarme la vida",
         r"quiero morir",
         r"want to die",
         r"kill myself",
@@ -134,6 +142,12 @@ CRISIS_ESCALATION_HINTS = [
     r"want to die",
 ]
 
+english_hits = len(
+        re.findall(
+            r"\b(i|my|me|the|and|can|cannot|don|help|afraid|scared|papers|feel|chest|hurts|hurt|myself|want|nothing|tonight|anymore|tight|breathe|breath|panicking|panic|what|where|how|ready|done)\b",
+            lowered,
+        )
+    )
 
 def clean_spacing(text: str) -> str:
     if not text:
@@ -276,7 +290,7 @@ async def classify_red_flag(
     system = """You are a clinical safety classifier for Nouniu in Barcelona.
 Decide if the user message matches ANY of these 8 red-flag categories (explicit OR implicit):
 1. riesgo_vital_ideacion_suicida (wish to die, goodbye messages, suicide plan)
-2. conductas_autolesivas (active self-harm / cutting / burning / hurting oneself intentionally right now)
+2. conductas_autolesivas (active self-harm OR explicit urge/intent to hurt, cut, or burn oneself)
 3. descompensacion_panico_incontrolable (communication completely broken; feels dying/heart attack; grounding exercise ALREADY tried and explicitly failing/escalating out of control)
 4. desconexion_realidad_psicosis (hallucinations, severe paranoia, persistent incoherent speech)
 5. riesgo_terceros (threats to hurt others)
