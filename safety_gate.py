@@ -42,7 +42,9 @@ CATEGORY_TO_SCENARIO = {
 KEYWORD_FALLBACK = {
     "A": [
         r"suicid",
-        r"self[- ]harm",
+        r"quiero morir",
+        r"want to die",
+        r"kill myself",
         r"hurt myself",
         r"harm myself",
         r"end my life",
@@ -50,9 +52,6 @@ KEYWORD_FALLBACK = {
         r"hacerme da[ñn]o",
         r"lastimarme",
         r"quitarme la vida",
-        r"quiero morir",
-        r"want to die",
-        r"kill myself",
         r"me quiero matar",
         r"mejor muerto",
         r"no vale la pena seguir",
@@ -142,12 +141,6 @@ CRISIS_ESCALATION_HINTS = [
     r"want to die",
 ]
 
-english_hits = len(
-        re.findall(
-            r"\b(i|my|me|the|and|can|cannot|don|help|afraid|scared|papers|feel|chest|hurts|hurt|myself|want|nothing|tonight|anymore|tight|breathe|breath|panicking|panic|what|where|how|ready|done)\b",
-            lowered,
-        )
-    )
 
 def clean_spacing(text: str) -> str:
     if not text:
@@ -188,7 +181,7 @@ def detect_user_language(text: str, fallback: str = "es") -> str:
     )
     english_hits = len(
         re.findall(
-            r"\b(i|my|me|the|and|can|cannot|don|help|afraid|scared|papers|feel|chest|hurts|tight|breathe|breath|panicking|panic|what|where|how|ready|done)\b",
+            r"\b(i|my|me|the|and|can|cannot|don|help|afraid|scared|papers|feel|chest|hurts|hurt|myself|want|nothing|tonight|anymore|tight|breathe|breath|panicking|panic|what|where|how|ready|done)\b",
             lowered,
         )
     )
